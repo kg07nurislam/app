@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ky">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="KVANTOY — күн сайын жаңы билим.">
+  <title>KVANTOY APP</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="KVANTOY башкы бет">
+        <span class="brand-mark">K</span>
+        <span>KVANTOY</span>
+      </a>
+      <div class="top-actions">
+        <button class="icon-button" id="refreshButton" aria-label="Жаңылоо" title="Жаңылоо">↻</button>
+      </div>
+    </header>
+
+    <main id="appMain" class="main-content">
+      <section class="page active" id="homePage" aria-label="Башкы бет">
+        <div class="welcome">
+          <p class="eyebrow">КҮН САЙЫН ЖАҢЫ БИЛИМ</p>
+          <h1>Кызыгууңду <span>билимге</span> айландыр.</h1>
+          <p class="welcome-copy">Илим, технология жана дүйнө тууралуу кызыктуу макалалар.</p>
+        </div>
+        <div class="section-heading">
+          <div><p class="eyebrow">KVANTOY ЖУРНАЛЫ</p><h2>Акыркы макалалар</h2></div>
+          <button class="text-button" id="reloadPosts">Жаңылоо</button>
+        </div>
+        <div id="homeStatus" class="status-line">Макалалар жүктөлүүдө…</div>
+        <div id="postsList" class="posts-list"></div>
+      </section>
+
+      <section class="page" id="articlePage" aria-label="Макаланы окуу">
+        <button class="back-button" id="backHome">← Артка</button>
+        <article id="articleContent" class="article-content"></article>
+      </section>
+
+      <section class="page" id="notificationsPage" aria-label="Билдирүүлөр">
+        <div class="page-heading">
+          <p class="eyebrow">ЖАҢЫЛЫКТАРДАН КАБАРДАР БОЛ</p>
+          <h1>Билдирүүлөр</h1>
+          <p>Акыркы 72 саатта жарыяланган макалалар жана жаңылыктар.</p>
+        </div>
+        <div class="notification-note">Бул тизме сайттагы жаңы макалалар менен автоматтык жаңыланат.</div>
+        <div id="notificationsList" class="posts-list"></div>
+        <div id="notificationsEmpty" class="empty-state hidden">Акыркы 3 күндө жаңы макала табылган жок.</div>
+      </section>
+
+      <section class="page" id="aiPage" aria-label="Kvantoy AI">
+        <div class="ai-panel">
+          <div class="ai-orb">✦</div>
+          <p class="eyebrow">АКЫЛДУУ ЖАРДАМЧЫ</p>
+          <h1>Kvantoy <span>AI</span></h1>
+          <p>Суроолоруңа жооп ал, татаал темаларды жөнөкөй түшүн жана макалаларды тереңирээк изилде.</p>
+          <a class="primary-button" href="https://ai.kvantoy.site/" target="_blank" rel="noopener noreferrer">AI менен сүйлөшүү <span>↗</span></a>
+          <p class="small-muted">Kvantoy AI өзүнчө коопсуз сервис катары ачылат.</p>
+        </div>
+      </section>
+
+      <section class="page" id="settingsPage" aria-label="Орнотуулар">
+        <div class="page-heading">
+          <p class="eyebrow">ТИРКЕМЕНИ ӨЗҮҢӨ ЫҢГАЙЛАШТЫР</p>
+          <h1>Орнотуулар</h1>
+        </div>
+        <div class="settings-group">
+          <div class="setting-row">
+            <div><strong>Караңгы режим</strong><small>Тиркеменин көрүнүшүн өзгөртүү</small></div>
+            <label class="switch"><input type="checkbox" id="themeToggle"><span></span></label>
+          </div>
+          <div class="setting-row">
+            <div><strong>Тил</strong><small>Интерфейстин тили</small></div>
+            <span class="setting-value">Кыргызча</span>
+          </div>
+          <div class="setting-row">
+            <div><strong>Билдирүүлөр</strong><small>Акыркы 72 сааттагы макалалар</small></div>
+            <span class="setting-value">Күйүк</span>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="brand-mark small">K</div>
+          <strong>KVANTOY APP</strong>
+          <p>Күн сайын жаңы билим!</p>
+          <small>1.0.0 · Алгачкы версия</small>
+          <a href="https://kvantoy.site/" target="_blank" rel="noopener noreferrer">kvantoy.site ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Негизги навигация">
+      <button class="nav-item active" data-page="home" aria-label="Башкы"><span class="nav-icon">⌂</span><span>Башкы</span></button>
+      <button class="nav-item" data-page="notifications" aria-label="Билдирүүлөр"><span class="nav-icon">♧</span><span>Билдирүү</span><i id="notificationDot" class="nav-dot hidden"></i></button>
+      <button class="nav-item ai-nav" data-page="ai" aria-label="AI"><span class="nav-icon">✦</span><span>AI</span></button>
+      <button class="nav-item" data-page="settings" aria-label="Орнотуулар"><span class="nav-icon">⚙</span><span>Орнотуу</span></button>
+    </nav>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="./js/app.js"></script>
+</body>
+</html>
